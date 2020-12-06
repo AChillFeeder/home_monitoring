@@ -1,8 +1,9 @@
 from modules import Computer
-from flask import Flask, session, request, render_template
+from flask import Flask, session, request, render_template, redirect, url_for
 
 
 app = Flask(__name__)
+app.secret_key = 'thee'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -18,7 +19,9 @@ def index():
 
         if username in users:
             if users[username] == password:
+                print('connected')
                 session['connected'] = username
+                return redirect(url_for('dashboard'))
             else:
                 print('wrong password')
         else:
@@ -29,7 +32,7 @@ def index():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    pass
+    return render_template('dashboard.html', username = session['connected'])
 
 app.run('0.0.0.0', 80, True)
 
