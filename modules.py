@@ -10,6 +10,7 @@ class Computer:
             self.camera_port = camera_port
             self.snapshots_directory = snapshots_directory
             self.camera = None
+            self.last_picture = None
 
         def capture_snapshot(self, ramp_frames=30, x=1280, y=720):
             """
@@ -30,6 +31,7 @@ class Computer:
 
             # save the image in the specified directory
             image_filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') # example: 2020-12-04_00-05-50.jpeg
+            self.last_picture = image_filename
             cv2.imwrite("{0}\{1}.jpeg".format(self.snapshots_directory, image_filename) ,im)
             
             # release camera to allow use from other apps
@@ -37,19 +39,31 @@ class Computer:
 
             return im
 
-        def command_line(self, stuff):
-            pass
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.camera = self.Camera(camera_port = 0)
 
+    def execute(self, take_save_snapshot, display_last_picture, cmd_command):
+        # set null values in case these variables don't get values
+        result_one, result_two, result_three = None, None, None
+
+        if take_save_snapshot:
+            try:
+                self.camera.capture_snapshot()
+                result_one = True
+            except Exception as exc:
+                result_one = False 
+        
+        if display_last_picture:
+            result_two = False if not self.camera.last_picture else self.camera.last_picture
+        
+        if cmd_command:
+            result_three = None
+
+        return result_one, result_two, result_three
 
 
 
-if __name__ == '__main__': # for testing purposes 
-    print('Program starting...')
-    pc = Computer()
-    pc.camera.capture_snapshot()
 
 
 

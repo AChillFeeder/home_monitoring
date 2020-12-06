@@ -10,10 +10,22 @@
     <div id="actions">
         <!-- 
             - take and save a picture
-            - display last picture/all pictures
+            - display last picture/(all pictures)
             - execute a cmd command
-            - take and display a screenshot
+            - (take and display a screenshot)
          -->
+        <form action="" method="post">
+            <input type="checkbox" name="take_save_snapshot">
+            <label for="take_save_snapshot">Take and save a snapshot</label>
+            <br>
+            <input type="checkbox" name="display_last_picture">
+            <label for="display_last_picture">Display last picture</label>
+            <br>
+            <label for="cmd_command">Execute cmd command</label>
+            <input type="text" name="cmd_command">
+            <br>
+            <input type="submit" value="Submit">
+        </form>
     </div>
     <div id="options"></div>
     <div id="output">

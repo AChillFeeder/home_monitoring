@@ -5,6 +5,8 @@ from flask import Flask, session, request, render_template, redirect, url_for
 app = Flask(__name__)
 app.secret_key = 'thee'
 
+computer = Computer()
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     
@@ -32,6 +34,17 @@ def index():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+    if request.method == 'POST':
+        take_save_snapshot = request.form['take_save_snapshot']
+        display_last_picture = request.form['display_last_picture']
+        cmd_command = request.form['cmd_command']
+
+        computer.execute(
+            take_save_snapshot,
+            display_last_picture,
+            cmd_command
+        )
+
     return render_template('dashboard.html', username = session['connected'])
 
 app.run('0.0.0.0', 80, True)
