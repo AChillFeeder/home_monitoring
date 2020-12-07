@@ -1,18 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+<style>
+    *{
+        font-family: 'Kumbh Sans', sans-serif;
+        font-size: 30px;
+    }
+    html, body{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        padding: 10%;
+    }
+    form{
+        border: 1px solid black;
+        padding: 50px;
+    }
+    input[type='text'], input[type='password']{
+        font-size: 20px;
+        margin-bottom: 50px;
+        width: 350px;
+        padding: 10px;
+        padding-left: 20px;
+        margin-left: 50px;
+    }
+    input[type='submit']{
+        border: 1px solid black;
+        padding: 20px 10px 20px 10px;
+        width: 250px;
+        background: none;
+        transition: 1.5s background-color;
+    }
+    input[type='submit']:hover{
+        cursor: pointer;
+        background-color: rgb(218, 218, 218);
+    }
+
+    @media screen and (max-width: 700px) {
+        *{
+            font-size: 15px;
+        }
+        form{
+            padding: 10%;
+        }
+        input[type='text'], input[type='password']{
+            margin-left: 0;
+            padding: 5px;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+        input[type='submit']{
+            width: 100%;
+        }
+    }
+    
+</style>
 <body>
     <form action="" method="POST">
         <label for="username">Username: </label>
-        <input type="text" name='username' id="username">
-
-        <label for="password">Password: </label>
+        <input type="text" name='username' id="username" autocapitalize="none">
+        <br>
+        <label for="password">Password : </label>
         <input type="password" name='password' id="password">
-
+        <br>
         <input type="submit" value="Submit">
     </form>
 </body>
