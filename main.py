@@ -52,6 +52,8 @@ def dashboard():
             cmd_command
         )
 
+    # commit tests
+
     return render_template('dashboard.html', username=session['connected'], results=results)
 
 app.run('0.0.0.0', 80, True)
