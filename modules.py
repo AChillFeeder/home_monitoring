@@ -39,8 +39,6 @@ class Computer:
             # release camera to allow use from other apps
             del(self.camera)
 
-            return im
-
 
     def __init__(self):
         self.camera = self.Camera(camera_port = 0)
@@ -49,6 +47,7 @@ class Computer:
         """
             Execute whatever commands the user asked for and return their completion status
         """
+
         # set null values in case these variables don't get values
         results = {
             "take_save_success": False,
@@ -70,7 +69,7 @@ class Computer:
             try:
                 os.system("start cmd /k {}".format(cmd_command))  
             except Exception:
-                results["cmd_command_success"] = None
+                results["cmd_command_success"] = False
 
         return results
 
