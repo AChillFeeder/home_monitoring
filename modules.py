@@ -1,6 +1,7 @@
 
 import cv2
 from datetime import datetime
+import os
 
 
 class Computer:
@@ -66,7 +67,10 @@ class Computer:
             results["last_picture_filename"] = False if not self.camera.last_picture else self.camera.last_picture
         
         if cmd_command:
-            results["cmd_command_success"] = None
+            try:
+                os.system("start cmd /k {}".format(cmd_command))  
+            except Exception:
+                results["cmd_command_success"] = None
 
         return results
 

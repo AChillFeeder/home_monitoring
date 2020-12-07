@@ -1,6 +1,8 @@
 from modules import Computer
 from flask import Flask, session, request, render_template, redirect, url_for
 
+# send notification when mouse is moved and I'm far
+# take an image at every interval
 
 app = Flask(__name__, static_url_path="/snapshots", static_folder='snapshots')
 app.secret_key = 'thee'
