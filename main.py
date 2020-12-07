@@ -39,7 +39,7 @@ def dashboard():
         display_last_picture = request.form['display_last_picture']
         cmd_command = request.form['cmd_command']
 
-        computer.execute(
+        results = computer.execute(
             take_save_snapshot,
             display_last_picture,
             cmd_command

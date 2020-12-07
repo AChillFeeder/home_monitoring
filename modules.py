@@ -44,23 +44,30 @@ class Computer:
         self.camera = self.Camera(camera_port = 0)
 
     def execute(self, take_save_snapshot, display_last_picture, cmd_command):
+        """
+            Execute whatever commands the user asked for and return their completion status
+        """
         # set null values in case these variables don't get values
-        result_one, result_two, result_three = None, None, None
+        results = {
+            "take_save_success": False,
+            "last_picture_filename": False,
+            "cmd_command_success": False,
+        }
 
         if take_save_snapshot:
             try:
                 self.camera.capture_snapshot()
-                result_one = True
+                results["take_save_success"] = True
             except Exception as exc:
-                result_one = False 
+                results["take_save_success"] = False 
         
         if display_last_picture:
-            result_two = False if not self.camera.last_picture else self.camera.last_picture
+            results["last_picture_filename"] = False if not self.camera.last_picture else self.camera.last_picture
         
         if cmd_command:
-            result_three = None
+            results["cmd_command_success"] = None
 
-        return result_one, result_two, result_three
+        return results
 
 
 
