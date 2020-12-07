@@ -30,9 +30,10 @@ class Computer:
             retval, im = self.camera.read()
 
             # save the image in the specified directory
-            image_filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') # example: 2020-12-04_00-05-50.jpeg
-            self.last_picture = image_filename
-            cv2.imwrite("{0}\{1}.jpeg".format(self.snapshots_directory, image_filename) ,im)
+            image_filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + '.jpeg' 
+            # example: 2020-12-04_00-05-50.jpeg
+            self.last_picture = image_filename 
+            cv2.imwrite("{0}\{1}".format(self.snapshots_directory, image_filename) ,im)
             
             # release camera to allow use from other apps
             del(self.camera)

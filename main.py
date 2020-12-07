@@ -2,7 +2,7 @@ from modules import Computer
 from flask import Flask, session, request, render_template, redirect, url_for
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/snapshots", static_folder='snapshots')
 app.secret_key = 'thee'
 
 computer = Computer()
@@ -34,9 +34,16 @@ def index():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+
+    results = {
+        "take_save_success": False,
+        "last_picture_filename": False,
+        "cmd_command_success": False,
+    }
+
     if request.method == 'POST':
-        take_save_snapshot = request.form['take_save_snapshot']
-        display_last_picture = request.form['display_last_picture']
+        take_save_snapshot = request.form.get('take_save_snapshot')
+        display_last_picture = request.form.get('display_last_picture')
         cmd_command = request.form['cmd_command']
 
         results = computer.execute(
@@ -45,7 +52,7 @@ def dashboard():
             cmd_command
         )
 
-    return render_template('dashboard.html', username = session['connected'])
+    return render_template('dashboard.html', username=session['connected'], results=results)
 
 app.run('0.0.0.0', 80, True)
 

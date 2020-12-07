@@ -35,6 +35,9 @@
             - global ip address
             - client status (connected or not)
          -->
+        {% if results["last_picture_filename"] %}
+            <img src="{{ url_for('static', filename= results['last_picture_filename']) }}">
+        {% endif %}
     </div>
 </body>
 </html>
