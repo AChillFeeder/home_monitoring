@@ -52,7 +52,7 @@ def dashboard():
             cmd_command
         )
 
-    # commit tests
+    # commit tests again
 
     return render_template('dashboard.html', username=session['connected'], results=results)
 
