@@ -13,7 +13,7 @@ class Computer:
             self.camera = None
             self.last_picture = None
 
-        def capture_snapshot(self, ramp_frames=30, x=1280, y=720):
+        def capture_snapshot(self, ramp_frames=60, x=1280, y=720):
             """
                 Capture a snapshot and save it in the snapshots directory\n
                 It is taken in HD by default (1280 x 720)
