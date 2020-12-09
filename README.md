@@ -11,6 +11,6 @@ The code structure is pretty basic, a MODULES.PY file has the basic/low-level fu
 I don't know if there actually is a developper out there interested in this code, but if you want to use a part of the program (or all of it for that matter) then feel free to do so, I hope my code will make someone's work easier and I wonder what kind of projects they'd be working with!
 
 ## NEXT THINGS TO LEARN:
-###Django
-###Popular design patterns
+-Django
+-Popular design patterns
 
