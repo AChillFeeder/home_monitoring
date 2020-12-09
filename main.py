@@ -19,6 +19,7 @@ def index():
     # list of users allowed to connect and their passwords
     # yes I know, don't store password in clear text
     # it's temporary, promise :)    
+
     users = {
         'username1': 'password1',
         'username2': 'password2',
@@ -59,20 +60,22 @@ def dashboard():
         "cmd_command_success": False,
     }
 
-    if request.method == 'POST':
-        # take user's input
-        take_save_snapshot = request.form.get('take_save_snapshot') # BOOL
-        display_last_picture = request.form.get('display_last_picture') # BOOL
-        cmd_command = request.form['cmd_command'] # STR
+    if session['connected']: # check if the user is connected
+        if request.method == 'POST':
+            # take user's input
+            take_save_snapshot = request.form.get('take_save_snapshot') # BOOL
+            display_last_picture = request.form.get('display_last_picture') # BOOL
+            cmd_command = request.form['cmd_command'] # STR
 
-        # execute functions the user wants
-        results = computer.execute(
-            take_save_snapshot,
-            display_last_picture,
-            cmd_command
-        )
+            # execute functions the user wants
+            results = computer.execute(
+                take_save_snapshot,
+                display_last_picture,
+                cmd_command
+            )
 
-    return render_template('dashboard.html', username=session['connected'], results=results)
+        return render_template('dashboard.html', username=session['connected'], results=results)
+    return redirect('/') # and send them to the login form if they aren't
 
 app.run('0.0.0.0', 80, True)
 
